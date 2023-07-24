@@ -9,8 +9,9 @@ class s三明Spider(ZhengFuBaseSpider):
     method = "POST"
     allowed_domains = ['sm.gov.cn']
     start_urls = ['http://www.sm.gov.cn']
-    api = "https://www.sm.gov.cn/ssp/search/api/search?time=1665212124747"
+    api = "http://www.sm.gov.cn/ssp/search/api/search?time=1689824448647"
     data = {
+        "siteType": "1",
         "mainSiteId": "ff808081744e1c2301744e1e83600002",
         "siteId": "ff808081744e1c2301744e1e83600002",
         "type": "0",

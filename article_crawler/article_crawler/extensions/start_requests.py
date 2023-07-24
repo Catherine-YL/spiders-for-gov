@@ -26,7 +26,7 @@ class RequestGenerator:
             'url': 1
         }.items())
 
-        result = self.client['scrapy_gov'][self.name].find(
+        result = self.client['scrapy_doc'][self.name].find(
           filter=filter,
           projection=project,
           sort=sort

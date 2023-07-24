@@ -75,11 +75,11 @@ class baseSpider(Spider):
     def closed(self, reason):
         client = self.client
 
-        total_num: int = client['scrapy_gov'][self.name].count_documents(
+        total_num: int = client['scrapy_doc'][self.name].count_documents(
             filter={}
         )
 
-        content_num: int = client['scrapy_gov'][self.name].count_documents(
+        content_num: int = client['scrapy_doc'][self.name].count_documents(
             filter={
                 'content': {
                     '$exists': True

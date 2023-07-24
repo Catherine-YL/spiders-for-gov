@@ -3,4 +3,4 @@
 
 
 MONGODB_URI = 'mongodb://localhost:27017'
-MONGODB_DATABASE = 'scrapy_gov'
+MONGODB_DATABASE = 'scrapy_doc'

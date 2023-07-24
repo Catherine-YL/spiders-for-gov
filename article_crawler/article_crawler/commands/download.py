@@ -19,7 +19,7 @@ class Command(ScrapyCommand):
         client = MongoClient(get_project_settings().get('MONGODB_URI'))
 
 
-        total_num: int = client['scrapy_gov'][city].count_documents(
+        total_num: int = client['scrapy_doc'][city].count_documents(
             filter={
                 'content': {
                     '$exists': True
@@ -29,7 +29,7 @@ class Command(ScrapyCommand):
 
         print(f"{total_num} documents found.")
 
-        result = client['scrapy_gov'][city].aggregate([
+        result = client['scrapy_doc'][city].aggregate([
             {
                 '$match': {
                     'content': {
@@ -91,8 +91,8 @@ class Command(ScrapyCommand):
                     csv_writer.writerow(item)
                     pbar.update(1)
 
-        total_doc_num = client['scrapy_gov'][city].count_documents(filter={})
-        content_doc_num = client['scrapy_gov'][city].count_documents(filter={'content': {'$exists': True}})
+        total_doc_num = client['scrapy_doc'][city].count_documents(filter={})
+        content_doc_num = client['scrapy_doc'][city].count_documents(filter={'content': {'$exists': True}})
 
         print("[coverage: {0:>6.2%} ]: downloaded into data/download/{1}.csv".format(content_doc_num/total_doc_num, city))
 
