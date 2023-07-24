@@ -69,7 +69,7 @@ class A新疆维吾尔自治区生态环境厅Spider(ZhengFuBaseSpider):
         result = {
             'title': item["title"],
             'url':  item["url"],
-            'type': item["source"],
+            'source': item["source"],
             'date': item["pubDate"]
         }
         return result

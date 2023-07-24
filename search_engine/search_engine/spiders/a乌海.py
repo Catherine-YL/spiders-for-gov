@@ -6,7 +6,12 @@ class WuhaiSpider(ZhengFuBaseSpider):
     name = '乌海'
     api = "http://www.wuhai.gov.cn/search/pcRender?pageId=63493493b61047b8be9bc396fa236e60"
     method = "POST"
-    debug = True
+    headers = {
+        "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36",
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    debug =False
     allowed_domains = ['wuhai.gov.cn']
     start_urls = ['http://www.wuhai.gov.cn']
     data = {
@@ -17,8 +22,8 @@ class WuhaiSpider(ZhengFuBaseSpider):
         "sr": "score desc",
         "advtime": "",
         "advrange": "",
-        "ext": "-siteId:1862",
-        "pNo": "{page}",
+        "ext": "siteId:1862",
+        "pNo": "1",
         "searchArea": "",
         "advtime": "",
         "advrange": "",
@@ -27,7 +32,7 @@ class WuhaiSpider(ZhengFuBaseSpider):
         "adveq": "",
         "searchArea": "",
         "advSiteArea": "",
-        "q": "{keyword}",
+        "q": "环境",
     }
 
     def edit_data(self, data: dict, keyword: str, page: int):
@@ -45,10 +50,8 @@ class WuhaiSpider(ZhengFuBaseSpider):
 
     def edit_item(self, item):
         result = {}
-        result["url"] = item.css("div.news-style1 > h3 > a::attr(href)").get()
-        result["url"] = result["url"][0]
         result["type"] = "unknown"
         result["title"] = item.css("div.news-style1 > h3>a::text").getall()
-        result["source"] = item.css("div.news-style1 > h3 > a::attr(href)").get()
+        result["url"] = item.css("div.news-style1 > h3 > a::attr(href)").get()
         result["date"] = item.css("p.dates >span::text").get()
         return result

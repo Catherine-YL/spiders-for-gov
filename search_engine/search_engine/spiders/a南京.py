@@ -31,8 +31,12 @@ class A南京Spider(ZhengFuBaseSpider):
         input: items
         return: item_dict
         """
+        title = str(item['title'])
+        title = title.replace('</em>','')
+        title=title.replace('<em>','')
+
         result = {
-            'title': item["title"],
+            'title': title,
             'url':  item["url"],
             'type': item["trs_type"],
             'date': item["docreltime"],

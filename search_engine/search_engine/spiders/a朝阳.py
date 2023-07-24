@@ -46,7 +46,6 @@ class ChaoyangSpider(ZhengFuBaseSpider):
         result['text'] = item.css("div.text::text").getall()
         result['date'] = item.css("div.time span::text").get()
         result['type'] = item.css("div.title div.lanm::text").get()
-        result['source'] = "unknown"
         return result
 
     def edit_page(self, response):

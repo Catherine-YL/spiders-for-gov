@@ -2,7 +2,8 @@ import scrapy
 from search_engine.basepro import ZhengFuBaseSpider
 from scrapy.selector import Selector
 
-
+import urllib
+from urllib import parse
 class JiaxingSpider(ZhengFuBaseSpider):
     """TODO crawl"""
     name = '嘉兴'
@@ -34,10 +35,16 @@ class JiaxingSpider(ZhengFuBaseSpider):
 
     def edit_item(self, item):
         data = {}
-        data['url'] = item.css("div.jcse-news-title > a::attr(href)").get()
+        try:
+            url = item.css("div.jcse-news-title > a::attr(href)").re('url=(.*)&q=')[0]
+            url = str(url)
+            new_txt = urllib.parse.unquote(url)
+            data['url'] = new_txt
+        except:
+            data['url'] = item.css("div.jcse-news-title > a::attr(href)").get()
         data['type'] = item.css("span.typeTtitle > input.tagclass::attr(value)").get()
         data['title'] = item.css("div.jcse-news-title > a::text").getall()
-        data['source'] = item.css("span.jcse-news-date.jcse-news-date2::text").get()
+        data['source'] = item.css("span.jcse-news-date.jcse-news-date2  ::text").getall()
         data['date'] = item.css("span.jcse-news-date.jcse-news-date1::text ").get()
         return data
 

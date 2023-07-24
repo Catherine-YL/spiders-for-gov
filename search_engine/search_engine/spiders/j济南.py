@@ -8,6 +8,7 @@ class J济南(ZhengFuBaseSpider):
     name = '济南'
     api = "http://www.jinan.gov.cn/jsearchfront/interfaces/cateSearch.do"
     method = "POST"
+    debug = True
     data = {
         "websiteid": "370100000000000",
         "q": "{keyword}",
@@ -41,7 +42,7 @@ class J济南(ZhengFuBaseSpider):
         data = {
             'url': item.css("div.jcse-news-url > a::text").get(),
             'title': item.css("div.jcse-news-title > a::text").getall(),
-            'date': item.css("div.jcse-news-date::text").get()
+            'date': item.css("span.jcse-news-date::text").get()
         }
         return data
 
