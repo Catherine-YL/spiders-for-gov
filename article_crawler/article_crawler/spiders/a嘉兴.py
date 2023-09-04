@@ -26,3 +26,22 @@ class a嘉兴Spider(baseSpider):
         return {
             'content': response.css(' div.article-content-box  :not(script):not(style)::text').getall(),
         }
+
+    @baseSpider.parser('嘉兴', 'www.jiaxing.gov.cn')
+    def parser_5(self, response, **kwargs):
+        return {
+            'content': response.css('div.TRS_PreAppend  :not(script):not(style)::text').getall(),
+        }
+
+    @baseSpider.parser('嘉兴', 'www.jiaxing.gov.cn')
+    def parser_6(self, response, **kwargs):
+        return {
+            'content': response.css('div.article-conter  :not(script):not(style)::text').getall(),
+        }
+
+    @baseSpider.parser('嘉兴', 'swj.jiaxing.gov.cn')
+    def parser_6(self, response, **kwargs):
+        return {
+            'content': response.css('td#text :not(script):not(style)::text').getall(),
+        }
+
