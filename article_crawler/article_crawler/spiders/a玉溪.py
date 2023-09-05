@@ -27,3 +27,15 @@ class A玉溪Spider(baseSpider):
         return {
             "content": response.css("div section.main-text-container p::text").getall(),
         }
+
+    @baseSpider.parser('玉溪', 'www.yuxi.gov.cn')
+    def parser_5(self, response, **kwargs):
+        return {
+            "content": response.css("div.ArticleBody p span::text").getall(),
+        }
+
+    @baseSpider.parser('玉溪', 'www.yuxi.gov.cn')
+    def parser_6(self, response, **kwargs):
+        return {
+            "content": response.css("div.content-txt p span::text").getall(),
+        }

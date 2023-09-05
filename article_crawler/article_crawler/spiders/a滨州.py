@@ -28,3 +28,9 @@ class A滨州Spider(baseSpider):
             'content': response.css("div.newscontentpar span::text").getall()
         }
 
+    @baseSpider.parser('滨州', 'www.binzhou.gov.cn')
+    def parser_5(self, response, **kwargs):
+        return {
+            'content': response.css("div.newsconParse span::text").getall()
+        }
+

@@ -9,3 +9,14 @@ class A许昌Spider(baseSpider):
         return {
             'content': response.css('#zoom :not(script):not(style)::text').getall(),
         }
+    @baseSpider.parser('许昌', 'www.taian.gov.cn')
+    def parser_2(self, response, **kwargs):
+        return {
+            'content': response.css('#ivs_content p span::text').getall(),
+        }
+
+    @baseSpider.parser('许昌', 'www.taian.gov.cn')
+    def parser_3(self, response, **kwargs):
+        return {
+            'content': response.css('div.pages_content p::text').getall(),
+        }

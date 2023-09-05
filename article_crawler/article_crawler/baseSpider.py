@@ -28,7 +28,7 @@ class baseSpider(Spider):
     def start_requests(self):
         rg = RequestGenerator(self.name)
         for item in rg.fetch_url():
-            request = Request(url=item['url'], callback=self.main_parser, meta={'url': item['url']})
+            request = Request(url=item['url'], callback=self.main_parser, meta={'url': item['url']}, dont_filter=True)
             yield request
 
     def delete_url(self, url):
