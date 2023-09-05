@@ -79,11 +79,20 @@ class XuchangSpider(ZhengFuBaseSpider):
         input: items
         return: item_dict
         """
-        result = {
-            'title': item["title"],
-            'url': 'http://www.xuchang.gov.cn' + item["linkurl"],
-            'source': self.cate_dict.get(item["syscategory"], "无"),
-            'date': item["showdate"],
-        }
+        url = item["linkurl"]
+        if "http" in url:
+            result = {
+                'title': item["title"],
+                'url': item["linkurl"],
+                'source': self.cate_dict.get(item["syscategory"], "无"),
+                'date': item["showdate"],
+            }
+        else:
+            result = {
+                'title': item["title"],
+                'url': 'http://www.xuchang.gov.cn' + item["linkurl"],
+                'source': self.cate_dict.get(item["syscategory"], "无"),
+                'date': item["showdate"],
+            }
         return result
 
