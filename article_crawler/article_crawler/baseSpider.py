@@ -94,7 +94,8 @@ class baseSpider(Spider):
         article_crawler 蜘蛛 {0} 完成运行, 原因{1}.
         page_contain_content: {2}.
         coverage rate: {3:.2%}%""".format(self.name, reason, content_num, coverage_rate)
-        return self.mail.send(to=["1070642565@qq.com"], subject=subject, body=body)
+        self.logger.debug(colored(body), "green"))
+        return True
 
     @classmethod
     def parser(cls, spider_name, url_example):
